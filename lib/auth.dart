@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'flutterfire.dart';
 import 'postPage.dart';
+import 'home.dart';
 
 import 'model.dart';
 
@@ -18,16 +19,14 @@ class _AuthenticationState extends State<Authentication> {
   TextEditingController _passwordField = TextEditingController();
 
   void showAlert(String message) {
-    showDialog(context: context, builder: (BuildContext context) {
-      return AlertDialog(
-      title: Text("Error"),
-      content: Text(message),
-    );
-
-    }); 
-    
-    
-    
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("Error"),
+            content: Text(message),
+          );
+        });
   }
 
   @override
@@ -40,27 +39,37 @@ class _AuthenticationState extends State<Authentication> {
           color: Colors.deepPurpleAccent,
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TextFormField(
-              controller: _emailField,
-              decoration: InputDecoration(
-                  hintText: "nome@email.com",
-                  labelText: "Email",
-                  labelStyle: TextStyle(
-                    color: Colors.white,
-                  )),
+            Container(
+              width: MediaQuery.of(context).size.width / 1.3,
+              child: TextFormField(
+                style: TextStyle(color: Colors.white),
+                controller: _emailField,
+                decoration: InputDecoration(
+                    hintText: "nome@email.com",
+                    labelText: "Email",
+                    labelStyle: TextStyle(
+                      color: Colors.white,
+                    )),
+              ),
             ),
-            TextFormField(
-              controller: _passwordField,
-              obscureText: true,
-              decoration: InputDecoration(
-                  hintText: "password",
-                  labelText: "Password",
-                  labelStyle: TextStyle(
-                    color: Colors.white,
-                  )),
+            SizedBox(height: MediaQuery.of(context).size.height / 35),
+            Container(
+              width: MediaQuery.of(context).size.width / 1.3,
+              child: TextFormField(
+                style: TextStyle(color: Colors.white),
+                controller: _passwordField,
+                obscureText: true,
+                decoration: InputDecoration(
+                    hintText: "password",
+                    labelText: "Password",
+                    labelStyle: TextStyle(
+                      color: Colors.white,
+                    )),
+              ),
             ),
+            SizedBox(height: MediaQuery.of(context).size.height / 35),
             Container(
               width: MediaQuery.of(context).size.width / 1.4,
               height: 45,
@@ -76,7 +85,7 @@ class _AuthenticationState extends State<Authentication> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => PostPage(model: cubo),
+                        builder: (context) => ListModels(),
                       ),
                     );
                   } else {
@@ -86,6 +95,7 @@ class _AuthenticationState extends State<Authentication> {
                 child: Text("Register"),
               ),
             ),
+            SizedBox(height: MediaQuery.of(context).size.height / 35),
             Container(
               width: MediaQuery.of(context).size.width / 1.4,
               height: 45,
@@ -101,11 +111,10 @@ class _AuthenticationState extends State<Authentication> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => PostPage(model: cubo),
+                        builder: (context) => ListModels(),
                       ),
                     );
-                  } 
-                  else {
+                  } else {
                     showAlert(response.message);
                   }
                 },

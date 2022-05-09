@@ -52,3 +52,13 @@ Future<RegisterResponse> register(String email, String password) async {
     return RegisterResponse(false, "Internal error.");
   }
 }
+
+Future<bool> signOut() async {
+  try {
+    await Firebase.initializeApp();
+    await FirebaseAuth.instance.signOut();
+    return true;
+  } catch(e) {
+    return false;
+  }
+}
