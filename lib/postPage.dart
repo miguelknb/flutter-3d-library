@@ -10,9 +10,8 @@ class PostPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        
         appBar: AppBar(
-          title: const Text("Cool 3d Models"),
+          title: Text(model.name)
         ),
         body: SingleChildScrollView(
           child: Column(children: <Widget>[
@@ -38,7 +37,7 @@ class PostPage extends StatelessWidget {
                         builder: (context) => WebViewPage(
                             modelName: model.name, modelUrl: model.url))),
                 child: ClipRRect(
-                  child: Image.asset(model.imagePath),
+                  child: Image.network(model.imagePath),
                   borderRadius: BorderRadius.circular(20),
                 ),
               ),
@@ -120,8 +119,8 @@ class PostPage extends StatelessWidget {
                                 scale: -1,
                               ),
                               Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
                                 child: Text(
                                   model.comments[index].username,
                                   style: const TextStyle(

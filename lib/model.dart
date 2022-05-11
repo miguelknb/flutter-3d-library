@@ -33,13 +33,14 @@ class Model {
   final String name;
   final String url;
   final String description;
-    final String imagePath;
-  final String author;
-  final List<Comment> comments;
-
-  final List<Tag> tags;
+  final String imagePath;
+  String author = '';
+  List<Comment> comments = [];
+  List<Tag> tags = [];
 
   Model(this.name, this.url, this.description, this.imagePath, this.author, this.comments, this.tags);
+
+  Model.simple(this.name, this.url, this.description, this.imagePath);
 }
 
 Model cubo = Model(

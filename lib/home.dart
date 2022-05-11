@@ -4,16 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class Model {
-  final String name;
-  final String view_url;
-  final String description;
-  final String image_url;
-  final int n_triangles;
-
-  Model(this.name, this.view_url, this.description, this.image_url, this.n_triangles);
-
-}
+import 'model.dart';
+import 'postPage.dart';
+import 'webViewPage.dart';
 
 class ListModels extends StatefulWidget {
   const ListModels({Key? key}) : super(key: key);
@@ -26,6 +19,9 @@ class _ListModelsState extends State<ListModels> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("List Models"),
+      ),
       body: Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -42,14 +38,73 @@ class _ListModelsState extends State<ListModels> {
                   child: CircularProgressIndicator(),
                 );
               }
-              return ListView(
-                  children: snapshot.data!.docs.map((document) {
 
-                print(document.toString());
-                return Row(children: [
-                  Text("Model Name: ${document.id}"),
-                ]);
-              }).toList());
+              final models = snapshot.data!.docs.map((doc) => doc).toList();
+
+              return ListView.builder(
+                itemCount: models.length,
+                itemBuilder: (BuildContext ctx, int index) {
+                  var currentModel = models[index];
+                  Model finalModel = Model.simple(
+                      currentModel["name"],
+                      currentModel["view_url"],
+                      currentModel["description"],
+                      currentModel["image_url"]);
+
+                  return GestureDetector(
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => PostPage(
+                                  model: finalModel,
+                                ))),
+                    child: Container(
+                      margin: const EdgeInsets.all(13.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            flex: 6,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  finalModel.name,
+                                  softWrap: true,
+                                  style: TextStyle(
+                                      fontSize: 20.0,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  finalModel.description,
+                                  softWrap: true,
+                                )
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            width: 80,
+                            height: 80,
+                            child: GestureDetector(
+                              onLongPress: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => WebViewPage(
+                                          modelName: finalModel.name,
+                                          modelUrl: finalModel.url))),
+                              child: ClipRRect(
+                                child: Image.network(finalModel.imagePath),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              );
             },
           ),
         ),
