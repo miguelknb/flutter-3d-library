@@ -3,6 +3,7 @@ import 'package:flutter3d/auth.dart';
 import 'package:flutter3d/postPage.dart';
 import 'model.dart';
 
+import 'package:google_fonts/google_fonts.dart';
 
 import 'auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -19,6 +20,10 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        theme: ThemeData(
+          primarySwatch: Colors.deepPurple,  
+          textTheme: GoogleFonts.interTextTheme()
+        ),
         title: "3D Library Chad",
         home: Authentication(),
     );

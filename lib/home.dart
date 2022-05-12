@@ -53,11 +53,13 @@ class _ListModelsState extends State<ListModels> {
 
                   return GestureDetector(
                     onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => PostPage(
-                                  model: finalModel,
-                                ))),
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PostPage(
+                          model: finalModel,
+                        ),
+                      ),
+                    ),
                     child: Container(
                       margin: const EdgeInsets.all(13.0),
                       child: Row(
@@ -88,11 +90,13 @@ class _ListModelsState extends State<ListModels> {
                             height: 80,
                             child: GestureDetector(
                               onLongPress: () => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => WebViewPage(
-                                          modelName: finalModel.name,
-                                          modelUrl: finalModel.url))),
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => WebViewPage(
+                                      modelName: finalModel.name,
+                                      modelUrl: finalModel.url),
+                                ),
+                              ),
                               child: ClipRRect(
                                 child: Image.network(finalModel.imagePath),
                                 borderRadius: BorderRadius.circular(10),

@@ -19,7 +19,7 @@ Future<SignInResponse> signIn(String email, String password) async {
   try {
     await Firebase.initializeApp();
     await FirebaseAuth.instance
-        .signInWithEmailAndPassword(email: email, password: password);
+        .signInWithEmailAndPassword(email: email.trim(), password: password);
     return SignInResponse(true, "User signed in");
   } on FirebaseAuthException catch (e) {
     if (e.code == 'user-not-found') {

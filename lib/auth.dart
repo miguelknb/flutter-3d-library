@@ -36,7 +36,7 @@ class _AuthenticationState extends State<Authentication> {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
-          color: Colors.deepPurpleAccent,
+          color: Colors.deepPurple,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
