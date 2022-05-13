@@ -2,10 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'flutterfire.dart';
-import 'postPage.dart';
 import 'home.dart';
-
-import 'model.dart';
 
 class Authentication extends StatefulWidget {
   const Authentication({Key? key}) : super(key: key);
@@ -15,8 +12,8 @@ class Authentication extends StatefulWidget {
 }
 
 class _AuthenticationState extends State<Authentication> {
-  TextEditingController _emailField = TextEditingController();
-  TextEditingController _passwordField = TextEditingController();
+  final TextEditingController _emailField = TextEditingController();
+  final TextEditingController _passwordField = TextEditingController();
 
   void showAlert(String message) {
     showDialog(
@@ -41,7 +38,7 @@ class _AuthenticationState extends State<Authentication> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
+            SizedBox(
               width: MediaQuery.of(context).size.width / 1.3,
               child: TextFormField(
                 style: TextStyle(color: Colors.white),
@@ -55,7 +52,7 @@ class _AuthenticationState extends State<Authentication> {
               ),
             ),
             SizedBox(height: MediaQuery.of(context).size.height / 35),
-            Container(
+            SizedBox(
               width: MediaQuery.of(context).size.width / 1.3,
               child: TextFormField(
                 style: TextStyle(color: Colors.white),

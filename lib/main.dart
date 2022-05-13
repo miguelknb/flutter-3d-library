@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3d/auth.dart';
-import 'package:flutter3d/postPage.dart';
-import 'model.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 
@@ -11,7 +9,7 @@ import 'package:firebase_core/firebase_core.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(App());
+  runApp(const App());
 }
 
 class App extends StatelessWidget {
@@ -25,7 +23,7 @@ class App extends StatelessWidget {
           textTheme: GoogleFonts.interTextTheme()
         ),
         title: "3D Library Chad",
-        home: Authentication(),
+        home: const Authentication(),
     );
   }
 }
