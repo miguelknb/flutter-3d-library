@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter3d/auth.dart';
+import 'package:flutter3d/providers/auth_provider.dart';
 
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 import 'auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -9,7 +11,14 @@ import 'package:firebase_core/firebase_core.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const App());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AuthProvider())
+      ],
+      child: const App()
+    )
+  );
 }
 
 class App extends StatelessWidget {

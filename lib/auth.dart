@@ -1,8 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'flutterfire.dart';
-import 'home.dart';
+import 'package:flutter3d/providers/auth_provider.dart';
+import 'providers/auth_provider.dart';
+import 'package:provider/provider.dart';
+import 'pages/home.dart';
 
 class Authentication extends StatefulWidget {
   const Authentication({Key? key}) : super(key: key);
@@ -28,6 +30,7 @@ class _AuthenticationState extends State<Authentication> {
 
   @override
   Widget build(BuildContext context) {
+    AuthProvider ap = Provider.of<AuthProvider>(context, listen: false);
     return Scaffold(
       body: Container(
         width: MediaQuery.of(context).size.width,
@@ -76,8 +79,8 @@ class _AuthenticationState extends State<Authentication> {
               ),
               child: MaterialButton(
                 onPressed: () async {
-                  RegisterResponse response =
-                      await register(_emailField.text, _passwordField.text);
+                  AuthResponse response =
+                      await ap.register(_emailField.text, _passwordField.text);
                   if (response.completed == true) {
                     Navigator.push(
                       context,
@@ -102,8 +105,8 @@ class _AuthenticationState extends State<Authentication> {
               ),
               child: MaterialButton(
                 onPressed: () async {
-                  SignInResponse response =
-                      await signIn(_emailField.text, _passwordField.text);
+                  AuthResponse response =
+                      await ap.signIn(_emailField.text, _passwordField.text);
                   if (response.completed) {
                     Navigator.push(
                       context,
