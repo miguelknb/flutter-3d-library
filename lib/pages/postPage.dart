@@ -1,6 +1,6 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
-import 'models/model.dart';
+import '../models/model.dart';
 import 'webViewPage.dart';
 
 class PostPage extends StatelessWidget {

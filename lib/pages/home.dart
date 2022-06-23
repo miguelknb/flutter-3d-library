@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'model.dart';
+import '../models/model.dart';
 import 'postPage.dart';
 import 'webViewPage.dart';
 
