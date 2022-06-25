@@ -23,7 +23,7 @@ class _CreateProfileState extends State<CreateProfile> {
     // } else if (_photoURLField.text.isEmpty) {
     //   showAlert(context, "photo missing");
     } else {
-      Provider.of<AuthProvider>(context).UpdateProfile(_displayNameField.text, _photoURLField.text);
+      Provider.of<AuthProvider>(context, listen: false).UpdateProfile(_displayNameField.text, _photoURLField.text);
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const ListModels()),
