@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import '../generated/l10n.dart';
 import '../models/model.dart';
 import 'postPage.dart';
 import 'webViewPage.dart';
@@ -19,7 +20,7 @@ class _ListModelsState extends State<ListModels> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("List Models"),
+        title: Text(S.of(context).modelList),
       ),
       body: Container(
         decoration: BoxDecoration(

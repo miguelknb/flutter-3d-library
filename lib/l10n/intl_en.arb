@@ -1,0 +1,58 @@
+{
+    "modelList": "Model List",
+    "@modelList": {
+        "description": "Home page title"
+    },
+    "register": "Sign Up",
+    "@register": {
+        "description": "Register button label"
+    },
+    "login": "Sign In",
+    "@login": {
+        "description": "Login button label"
+    },
+    "password": "Password",
+    "@password": {
+        "description": "Password button label"
+    },
+    "by": "by",
+    "@by": {
+        "description": "By text"
+    },
+    "weakPassword": "The password is too weak.",
+    "@weakPassword": {
+        "description": "Weak password error message"
+    },
+    "emailAlreadyInUse": "Email already registered.",
+    "@emailAlreadyInUse": {
+        "description": "Email already in use error message"
+    },
+    "invalidEmail": "Invalid email.",
+    "@invalidEmail": {
+        "description": "Invalid email error message"
+    },
+    "internalError": "Internal error",
+    "@internalError": {
+        "description": "Internal error message"
+    },
+    "userNotFound": "User not found.",
+    "@userNotFound": {
+        "description": "User not found error message"
+    },
+    "wrongPassword": "Invalid credentials.",
+    "@wrongPassword": {
+        "description": "Wrong password error message"
+    },
+    "unableToSignIn": "Unable to sign in.",
+    "@unableToSignIn": {
+        "description": "Unable to sign in error message"
+    },
+    "displayNameMissing": "You need to enter a display name.",
+    "@displayNameMissing": {
+        "description": "Display name missing error message"
+    },
+    "displayName": "display name",
+    "@displayName": {},
+    "photoURL": "profile photo url",
+    "@photoURL": {}
+}
