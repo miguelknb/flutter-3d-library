@@ -5,6 +5,7 @@ import 'package:flutter3d/providers/auth_provider.dart';
 import 'providers/auth_provider.dart';
 import 'package:provider/provider.dart';
 import 'pages/home.dart';
+import 'pages/menu.dart';
 
 class Authentication extends StatefulWidget {
   const Authentication({Key? key}) : super(key: key);
@@ -85,7 +86,7 @@ class _AuthenticationState extends State<Authentication> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ListModels(),
+                        builder: (context) => Menu(),
                       ),
                     );
                   } else {
@@ -111,7 +112,7 @@ class _AuthenticationState extends State<Authentication> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ListModels(),
+                        builder: (context) => Menu(),
                       ),
                     );
                   } else {
