@@ -1,0 +1,17 @@
+{
+    "modelList": "Lista de Modelos",
+    "register": "Cadastrar-se",
+    "login": "Entrar",
+    "password": "Senha",
+    "by": "por",
+    "weakPassword": "A senha é muito fraca.",
+    "emailAlreadyInUse": "Email já cadastrado.",
+    "invalidEmail": "Email inválido.",
+    "internalError": "Erro interno.",
+    "userNotFound": "Usuário não encontrado.",
+    "wrongPassword": "Credenciais inválidas.",
+    "unableToSignIn": "Não foi possível entrar.",
+    "displayNameMissing": "Escolha um nome de exibição.",
+    "displayName": "nome de exibição",
+    "photoURL": "url da foto de perfil"
+}

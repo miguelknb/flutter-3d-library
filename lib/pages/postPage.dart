@@ -1,5 +1,6 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
+import '../generated/l10n.dart';
 import '../models/model.dart';
 import 'webViewPage.dart';
 
@@ -51,7 +52,7 @@ class PostPage extends StatelessWidget {
                 children: <Widget>[
                   RichText(
                     text: TextSpan(
-                      text: 'por ',
+                      text: S.of(context).by,
                       style: const TextStyle(
                           fontWeight: FontWeight.normal, color: Colors.black),
                       children: <TextSpan>[

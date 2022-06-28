@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import '../generated/l10n.dart';
 import '../models/user_model.dart';
 import 'package:flutter/widgets.dart';
 
@@ -33,7 +34,7 @@ class AuthProvider extends ChangeNotifier {
         photoUrl: user.photoURL);
   }
 
-  Future<AuthResponse> signIn(String email, String password) async {
+  Future<AuthResponse> signIn(String email, String password, S s) async {
     try {
       UserCredential credential = await _auth.signInWithEmailAndPassword(
           email: email.trim(), password: password);
@@ -41,16 +42,16 @@ class AuthProvider extends ChangeNotifier {
       return AuthResponse(true, "User signed in");
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        return AuthResponse(false, "User not found");
+        return AuthResponse(false, S.current.userNotFound);
       }
       if (e.code == 'wrong-password') {
-        return AuthResponse(false, "Invalid credentials");
+        return AuthResponse(false, S.current.wrongPassword);
       }
-      return AuthResponse(false, "Unable to sign in");
+      return AuthResponse(false, S.current.unableToSignIn);
     }
   }
 
-  Future<AuthResponse> register(String email, String password) async {
+  Future<AuthResponse> register(String email, String password, S s) async {
     try {
       UserCredential credential = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
@@ -58,16 +59,16 @@ class AuthProvider extends ChangeNotifier {
       return AuthResponse(true, "User registered");
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        return AuthResponse(false, "The password is too weak.");
+        return AuthResponse(false, S.current.weakPassword);
       } else if (e.code == 'email-already-in-use') {
-        return AuthResponse(false, "Email already registered.");
+        return AuthResponse(false, S.current.emailAlreadyInUse);
       } else if (e.code == 'invalid-email') {
-        return AuthResponse(false, "Invalid email.");
+        return AuthResponse(false, S.current.invalidEmail);
       } else {
-        return AuthResponse(false, "Internal error.");
+        return AuthResponse(false, S.current.internalError);
       }
     } catch (e) {
-      return AuthResponse(false, "Internal error.");
+      return AuthResponse(false, S.current.internalError);
     }
   }
 
@@ -78,5 +79,10 @@ class AuthProvider extends ChangeNotifier {
     } catch (e) {
       return false;
     }
+  }
+
+  void UpdateProfile(String displayName, String photoURL){
+    _auth.currentUser?.updateDisplayName(displayName);
+    _auth.currentUser?.updatePhotoURL(photoURL);
   }
 }

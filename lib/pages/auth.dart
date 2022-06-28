@@ -1,11 +1,13 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter3d/pages/createProfile.dart';
 import 'package:flutter3d/providers/auth_provider.dart';
-import 'providers/auth_provider.dart';
+import '../generated/l10n.dart';
+import '../providers/auth_provider.dart';
 import 'package:provider/provider.dart';
-import 'pages/home.dart';
-import 'pages/menu.dart';
+import '../showAlert.dart';
+import 'home.dart';
 
 class Authentication extends StatefulWidget {
   const Authentication({Key? key}) : super(key: key);
@@ -17,17 +19,6 @@ class Authentication extends StatefulWidget {
 class _AuthenticationState extends State<Authentication> {
   final TextEditingController _emailField = TextEditingController();
   final TextEditingController _passwordField = TextEditingController();
-
-  void showAlert(String message) {
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text("Error"),
-            content: Text(message),
-          );
-        });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,8 +54,8 @@ class _AuthenticationState extends State<Authentication> {
                 controller: _passwordField,
                 obscureText: true,
                 decoration: InputDecoration(
-                    hintText: "password",
-                    labelText: "Password",
+                    hintText: "************",
+                    labelText: S.of(context).password,
                     labelStyle: TextStyle(
                       color: Colors.white,
                     )),
@@ -80,20 +71,20 @@ class _AuthenticationState extends State<Authentication> {
               ),
               child: MaterialButton(
                 onPressed: () async {
-                  AuthResponse response =
-                      await ap.register(_emailField.text, _passwordField.text);
+                  AuthResponse response = await ap.register(
+                      _emailField.text, _passwordField.text, S.of(context));
                   if (response.completed == true) {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => Menu(),
+                        builder: (context) => CreateProfile(),
                       ),
                     );
                   } else {
-                    showAlert(response.message);
+                    showAlert(context, response.message);
                   }
                 },
-                child: Text("Register"),
+                child: Text(S.of(context).register),
               ),
             ),
             SizedBox(height: MediaQuery.of(context).size.height / 35),
@@ -106,20 +97,22 @@ class _AuthenticationState extends State<Authentication> {
               ),
               child: MaterialButton(
                 onPressed: () async {
-                  AuthResponse response =
-                      await ap.signIn(_emailField.text, _passwordField.text);
+                  AuthResponse response = await ap.signIn(
+                      _emailField.text, _passwordField.text, S.of(context));
                   if (response.completed) {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => Menu(),
+                        builder: (context) => ap.user?.displayName != null
+                            ? ListModels()
+                            : CreateProfile(),
                       ),
                     );
                   } else {
-                    showAlert(response.message);
+                    showAlert(context, response.message);
                   }
                 },
-                child: Text("Login"),
+                child: Text(S.of(context).login),
               ),
             ),
           ],
