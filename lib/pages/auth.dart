@@ -23,6 +23,7 @@ class _AuthenticationState extends State<Authentication> {
   @override
   Widget build(BuildContext context) {
     AuthProvider ap = Provider.of<AuthProvider>(context, listen: false);
+
     return Scaffold(
       body: Container(
         width: MediaQuery.of(context).size.width,

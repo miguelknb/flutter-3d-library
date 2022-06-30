@@ -6,7 +6,7 @@ class Storage {
   final firebase_storage.FirebaseStorage storage =
       firebase_storage.FirebaseStorage.instance;
 
-  Future<void> uploadFile(
+  Future<void> uploadImage(
     String filePath,
     String fileName,
   ) async {

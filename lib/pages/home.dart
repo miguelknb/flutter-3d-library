@@ -2,6 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter3d/pages/menu.dart';
+import 'package:flutter3d/providers/auth_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../generated/l10n.dart';
 import '../models/model.dart';
@@ -19,6 +22,9 @@ class _ListModelsState extends State<ListModels> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(
+        child: Menu(user: Provider.of<AuthProvider>(context).user!),
+      ),
       appBar: AppBar(
         title: Text(S.of(context).modelList),
       ),

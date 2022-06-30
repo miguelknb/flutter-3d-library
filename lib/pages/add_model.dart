@@ -1,21 +1,19 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter3d/models/model.dart';
 import 'package:flutter3d/providers/auth_provider.dart';
 import 'package:flutter3d/storage_service_file.dart';
+import 'package:flutter3d/upload_file_button.dart';
 import '../providers/auth_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:path/path.dart' as p;
 
 import 'home.dart';
-import 'menu.dart';
 import 'dart:math';
 
-final _random = new Random();
+final _random = Random();
 
 // Future<AuthResponse> postModel(String name, String url, String description) async {
 //   final storageRef = FirebaseStorage.instance.ref();
@@ -32,7 +30,6 @@ class _AddModelState extends State<AddModel> {
   final TextEditingController _nameField = TextEditingController();
   final TextEditingController _descriptionField = TextEditingController();
   final TextEditingController _urlField = TextEditingController();
-  final TextEditingController _imageUrlField = TextEditingController();
   String fileName = "";
   String imageUrl = "";
 
@@ -114,32 +111,8 @@ class _AddModelState extends State<AddModel> {
                 borderRadius: BorderRadius.circular(10.0),
                 color: Colors.white,
               ),
-              child: MaterialButton(
-                onPressed: () async {
-                  final results = await FilePicker.platform.pickFiles(
-                      allowMultiple: false,
-                      allowCompression: true,
-                      type: FileType.custom,
-                      allowedExtensions: ['png', 'jpg', 'jpeg']);
-
-                  if (results == null) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text("No file selected"),
-                      ),
-                    );
-                  }
-
-                  final path = results?.files.single.path;
-                  // final fileName = results?.files.single.name;
-                  final extension = p.extension(path!);
-
-                  this.fileName = _nameField.text + '_' + userId! + extension;
-
-                  storage.uploadFile(path, fileName).then((value) => {});
-                },
-                child: Text("Upload File"),
-              ),
+              child:
+                  UploadFileButton(fileName: _nameField.text + "_" + userId!, title: 'Upload Model Image',),
             ),
             SizedBox(height: MediaQuery.of(context).size.height / 35),
             Container(
@@ -151,9 +124,8 @@ class _AddModelState extends State<AddModel> {
               ),
               child: MaterialButton(
                 onPressed: () async {
-                  String imageUrlFinal = await storage.getUrl(this.fileName);
+                  String imageUrlFinal = await storage.getUrl(fileName);
 
-                  print('ultimo: ' + imageUrlFinal);
                   modelsRef.add({
                     'name': _nameField.text,
                     'description': _descriptionField.text,
