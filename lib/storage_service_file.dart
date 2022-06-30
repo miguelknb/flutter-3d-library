@@ -3,8 +3,7 @@ import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:firebase_core/firebase_core.dart' as firebase_core;
 
 class Storage {
-  final firebase_storage.FirebaseStorage storage =
-      firebase_storage.FirebaseStorage.instance;
+  final firebase_storage.FirebaseStorage storage = firebase_storage.FirebaseStorage.instance;
 
   Future<void> uploadImage(
     String filePath,
@@ -20,7 +19,9 @@ class Storage {
   }
 
   Future<String> getUrl(fileName) async {
+    print(fileName);
     return storage.ref('images/$fileName').getDownloadURL().then((url) {
+      print(url);
       return url;
     });
 

@@ -1,5 +1,7 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
+import 'package:flutter3d/providers/auth_provider.dart';
+import 'package:provider/provider.dart';
 import '../generated/l10n.dart';
 import '../models/model.dart';
 import 'webViewPage.dart';
@@ -9,12 +11,13 @@ class PostPage extends StatelessWidget {
 
   final Model model;
 
+
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
-        appBar: AppBar(
-          title: Text(model.name)
-        ),
+        appBar: AppBar(title: Text(model.name)),
         body: SingleChildScrollView(
           child: Column(children: <Widget>[
             Container(
@@ -52,7 +55,7 @@ class PostPage extends StatelessWidget {
                 children: <Widget>[
                   RichText(
                     text: TextSpan(
-                      text: S.of(context).by,
+                      text: S.of(context).by + ' ' + Provider.of<AuthProvider>(context).user!.displayName!,
                       style: const TextStyle(
                           fontWeight: FontWeight.normal, color: Colors.black),
                       children: <TextSpan>[

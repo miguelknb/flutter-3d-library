@@ -42,30 +42,3 @@ class Model {
 
   Model.simple(this.name, this.url, this.description, this.imagePath);
 }
-
-Model cubo = Model(
-    "Cubo de Madeira",
-    "https://threedart.github.io/three.dart/example/web_gl_geometry_cube/web_gl_geometry_cube.html",
-    "Cubo de madeira texturizado",
-    "assets/images/cube.png",
-    "miguel",
-    comments_1,
-    <Tag>[Tag("free")]);
-
-Model cavalo = Model(
-    "Cavalo Legal",
-    "https://threedart.github.io/three.dart/example/web_gl_morph_targets_horse/web_gl_morph_targets_horse.html",
-    "Cavalo low poly sem textura",
-    "assets/images/horse.png",
-    "gabriel",
-    comments_2,
-    <Tag>[Tag("poly"), Tag("Animated")]);
-
-Model psicodelico = Model(
-    "Cubos Psicodelicos",
-    "https://threedart.github.io/three.dart/example/canvas_interactive_cubes/canvas_interactive_cubes.html",
-    "Cubos coloridos transparentes e clicáveis",
-    "assets/images/psychedelic_cubes.png",
-    "eduardo",
-    comments_3,
-    <Tag>[Tag("Cube"), Tag("Free")]);
