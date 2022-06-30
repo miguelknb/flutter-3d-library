@@ -140,7 +140,7 @@ class _AddModelState extends State<AddModel> {
                     'image_url': imageUrlFinal,
                     'n_triangles': 120 + _random.nextInt(18000 - 120)
                   }).then((value) {
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                         builder: (context) => ListModels(),
