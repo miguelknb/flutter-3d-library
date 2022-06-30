@@ -34,7 +34,7 @@ class _AddModelState extends State<AddModel> {
   String imageUrl = "";
 
   void setFileName(name, extension) {
-    this.fileName = name + extension;
+    fileName = name + extension;
   }
 
   void showAlert(String message) {
@@ -54,7 +54,8 @@ class _AddModelState extends State<AddModel> {
 
     final userId = ap.user?.uid;
 
-    CollectionReference modelsRef = FirebaseFirestore.instance.collection('Models');
+    CollectionReference modelsRef =
+        FirebaseFirestore.instance.collection('Models');
 
     final Storage storage = Storage();
 
@@ -114,8 +115,10 @@ class _AddModelState extends State<AddModel> {
                 borderRadius: BorderRadius.circular(10.0),
                 color: Colors.white,
               ),
-              child:
-                  UploadFileButton(fileName: _nameField.text + "_" + userId!, title: 'Upload Model Image', onUpload: setFileName),
+              child: UploadFileButton(
+                  fileName: _nameField.text + "_" + userId!,
+                  title: 'Upload Model Image',
+                  onUpload: setFileName),
             ),
             SizedBox(height: MediaQuery.of(context).size.height / 35),
             Container(
@@ -128,7 +131,7 @@ class _AddModelState extends State<AddModel> {
               child: MaterialButton(
                 onPressed: () async {
                   String imageUrlFinal = await storage.getUrl(fileName);
-                  print('FLTUTUBA ' + imageUrlFinal);
+
                   modelsRef.add({
                     'name': _nameField.text,
                     'description': _descriptionField.text,
@@ -137,12 +140,12 @@ class _AddModelState extends State<AddModel> {
                     'image_url': imageUrlFinal,
                     'n_triangles': 120 + _random.nextInt(18000 - 120)
                   }).then((value) {
-                    () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ListModels(),
-                          ),
-                        );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ListModels(),
+                      ),
+                    );
                   }).catchError((error) {
                     print(error);
                   });
